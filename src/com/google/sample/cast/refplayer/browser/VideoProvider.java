@@ -137,6 +137,7 @@ public class VideoProvider {
                                 videoUrl = urlPrefixMap.get(TARGET_FORMAT) + videoSpec
                                         .getString(TAG_VIDEO_URL);
                                 mimeType = videoSpec.getString(TAG_VIDEO_MIME);
+                                Log.d(VideoProvider.class.getName(), "resolved url = "+videoUrl+"; mime = "+mimeType);
                             }
                         }
                         if (videoUrl == null) {
@@ -172,6 +173,44 @@ public class VideoProvider {
                 }
             }
         }
+
+        MediaMetadata movieMetadata = new MediaMetadata(MediaMetadata.MEDIA_TYPE_MOVIE);
+        movieMetadata.putString(MediaMetadata.KEY_SUBTITLE, "KEY_SUBTITLE");
+        movieMetadata.putString(MediaMetadata.KEY_TITLE, "KEY_TITLE");
+        movieMetadata.addImage(new WebImage(Uri.parse("http://icons.iconarchive.com/icons/custom-icon-design/mini-3/48/test-paper-icon.png")));
+//        movieMetadata.addImage(new WebImage(Uri.parse(null)));
+        JSONObject jsonObjDesc = null;
+        try {
+            jsonObjDesc = new JSONObject();
+            jsonObjDesc.put(KEY_DESCRIPTION, "KEY_DESCRIPTION");
+        } catch (JSONException e) {
+            Log.e(TAG, "Failed to add description to the json object", e);
+        }
+        mediaList.add(new MediaInfo.Builder("https://bitlivedemo-a.akamaihd.net/mpds/stream-exo-liveedge.php?streamkey=bitcodin&#038;inputType=dash")
+                .setStreamType(MediaInfo.STREAM_TYPE_LIVE)
+                .setContentType("application/dash+xml")
+                .setMetadata(movieMetadata)
+                .setCustomData(jsonObjDesc)
+                .setStreamDuration(30 * 60 * 1000)
+                .setMediaTracks(new ArrayList<MediaTrack>())
+                .build());
+//        mediaList.add(new MediaInfo.Builder("https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/dash/BigBuckBunny.mpd")
+//                .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
+//                .setContentType("application/dash+xml")
+//                .setMetadata(movieMetadata)
+//                .setCustomData(jsonObjDesc)
+//                .setStreamDuration(30 * 60 * 1000)
+//                        //.setMediaTracks(new ArrayList<MediaTrack>())
+//                .build());
+
+//        mediaList.add(new MediaInfo.Builder("http://10.4.1.160/out/u/tv2news.mpd?start=2016-02-02T16:30:00Z&end=2016-02-02T17:30:00Z")
+//                .setStreamType(MediaInfo.STREAM_TYPE_NONE)
+//                .setContentType("video/mpeg")
+//                .build());
+//        mediaList.add( new MediaInfo.Builder("http://10.4.1.160/out/u/tv2news.mpd?start=2016-02-02T16:30:00Z&end=2016-02-02T17:30:00Z")
+//                .setStreamType(MediaInfo.STREAM_TYPE_LIVE)
+//                .setContentType("video/mpeg")
+//                .build());
         return mediaList;
     }
 

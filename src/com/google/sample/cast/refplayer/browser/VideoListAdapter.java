@@ -60,9 +60,11 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         final MediaInfo item = videos.get(position);
         MediaMetadata mm = item.getMetadata();
-        viewHolder.setTitle(mm.getString(MediaMetadata.KEY_TITLE));
-        viewHolder.setDescription(mm.getString(MediaMetadata.KEY_SUBTITLE));
-        viewHolder.setImage(mm.getImages().get(0).getUrl().toString());
+        if (mm != null) {
+            viewHolder.setTitle(mm.getString(MediaMetadata.KEY_TITLE));
+            viewHolder.setDescription(mm.getString(MediaMetadata.KEY_SUBTITLE));
+            viewHolder.setImage(mm.getImages().get(0).getUrl().toString());
+        }
         viewHolder.mMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
