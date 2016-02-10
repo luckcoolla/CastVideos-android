@@ -186,22 +186,22 @@ public class VideoProvider {
         } catch (JSONException e) {
             Log.e(TAG, "Failed to add description to the json object", e);
         }
-        mediaList.add(new MediaInfo.Builder("https://bitlivedemo-a.akamaihd.net/mpds/stream-exo-liveedge.php?streamkey=bitcodin&#038;inputType=dash")
-                .setStreamType(MediaInfo.STREAM_TYPE_LIVE)
-                .setContentType("application/dash+xml")
-                .setMetadata(movieMetadata)
-                .setCustomData(jsonObjDesc)
-                .setStreamDuration(30 * 60 * 1000)
-                .setMediaTracks(new ArrayList<MediaTrack>())
-                .build());
-//        mediaList.add(new MediaInfo.Builder("https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/dash/BigBuckBunny.mpd")
-//                .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
+//        mediaList.add(new MediaInfo.Builder("https://bitlivedemo-a.akamaihd.net/mpds/stream-exo-liveedge.php?streamkey=bitcodin&#038;inputType=dash")
+//                .setStreamType(MediaInfo.STREAM_TYPE_LIVE)
 //                .setContentType("application/dash+xml")
 //                .setMetadata(movieMetadata)
 //                .setCustomData(jsonObjDesc)
 //                .setStreamDuration(30 * 60 * 1000)
-//                        //.setMediaTracks(new ArrayList<MediaTrack>())
+//                .setMediaTracks(new ArrayList<MediaTrack>())
 //                .build());
+        mediaList.add(new MediaInfo.Builder("https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/dash/BigBuckBunny.mpd")
+                .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
+                .setContentType("application/dash+xml")
+                .setMetadata(movieMetadata)
+                .setCustomData(jsonObjDesc)
+                .setStreamDuration(30 * 60 * 1000)
+                        //.setMediaTracks(new ArrayList<MediaTrack>())
+                .build());
 
 //        mediaList.add(new MediaInfo.Builder("http://10.4.1.160/out/u/tv2news.mpd?start=2016-02-02T16:30:00Z&end=2016-02-02T17:30:00Z")
 //                .setStreamType(MediaInfo.STREAM_TYPE_NONE)

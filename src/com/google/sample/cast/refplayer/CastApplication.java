@@ -16,6 +16,7 @@
 
 package com.google.sample.cast.refplayer;
 
+import com.google.android.gms.cast.CastMediaControlIntent;
 import com.google.android.gms.cast.CastStatusCodes;
 import com.google.android.gms.cast.MediaQueueItem;
 import com.google.android.gms.cast.MediaStatus;
@@ -44,7 +45,8 @@ public class CastApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        String applicationId = getString(R.string.app_id);
+        //default receiver_id https://developers.google.com/cast/docs/receiver_apps#default
+        String applicationId = CastMediaControlIntent.DEFAULT_MEDIA_RECEIVER_APPLICATION_ID;//getString(R.string.app_id);
 
         // Build a CastConfiguration object and initialize VideoCastManager
         CastConfiguration options = new CastConfiguration.Builder(applicationId)
