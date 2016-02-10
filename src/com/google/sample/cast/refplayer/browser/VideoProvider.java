@@ -176,7 +176,7 @@ public class VideoProvider {
 
         MediaMetadata movieMetadata = new MediaMetadata(MediaMetadata.MEDIA_TYPE_MOVIE);
         movieMetadata.putString(MediaMetadata.KEY_SUBTITLE, "KEY_SUBTITLE");
-        movieMetadata.putString(MediaMetadata.KEY_TITLE, "KEY_TITLE");
+        movieMetadata.putString(MediaMetadata.KEY_TITLE, "KEY_TITLE:Live");
         movieMetadata.addImage(new WebImage(Uri.parse("http://icons.iconarchive.com/icons/custom-icon-design/mini-3/48/test-paper-icon.png")));
 //        movieMetadata.addImage(new WebImage(Uri.parse(null)));
         JSONObject jsonObjDesc = null;
@@ -186,31 +186,30 @@ public class VideoProvider {
         } catch (JSONException e) {
             Log.e(TAG, "Failed to add description to the json object", e);
         }
-//        mediaList.add(new MediaInfo.Builder("https://bitlivedemo-a.akamaihd.net/mpds/stream-exo-liveedge.php?streamkey=bitcodin&#038;inputType=dash")
-//                .setStreamType(MediaInfo.STREAM_TYPE_LIVE)
-//                .setContentType("application/dash+xml")
-//                .setMetadata(movieMetadata)
-//                .setCustomData(jsonObjDesc)
-//                .setStreamDuration(30 * 60 * 1000)
-//                .setMediaTracks(new ArrayList<MediaTrack>())
-//                .build());
-        mediaList.add(new MediaInfo.Builder("http://10.4.1.160/out/u/tv2news.mpd?start=2016-02-10T10:00:00Z&end=2016-02-10T10:30:00Z")
-                .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
+        mediaList.add(0, new MediaInfo.Builder("http://10.4.1.160/out/u/tv2news.mpd?start=2016-02-10T12:15:00Z")
+                .setStreamType(MediaInfo.STREAM_TYPE_LIVE)
                 .setContentType("application/dash+xml")
                 .setMetadata(movieMetadata)
                 .setCustomData(jsonObjDesc)
-                .setStreamDuration(30 * 60 * 1000)
-                        //.setMediaTracks(new ArrayList<MediaTrack>())
                 .build());
-
-//        mediaList.add(new MediaInfo.Builder("http://10.4.1.160/out/u/tv2news.mpd?start=2016-02-02T16:30:00Z&end=2016-02-02T17:30:00Z")
-//                .setStreamType(MediaInfo.STREAM_TYPE_NONE)
-//                .setContentType("video/mpeg")
-//                .build());
-//        mediaList.add( new MediaInfo.Builder("http://10.4.1.160/out/u/tv2news.mpd?start=2016-02-02T16:30:00Z&end=2016-02-02T17:30:00Z")
-//                .setStreamType(MediaInfo.STREAM_TYPE_LIVE)
-//                .setContentType("video/mpeg")
-//                .build());
+        MediaMetadata movieMetadataLive2 = new MediaMetadata(MediaMetadata.MEDIA_TYPE_MOVIE);
+        movieMetadataLive2.putString(MediaMetadata.KEY_TITLE, "KEY_TITLE:Live2");
+        movieMetadataLive2.addImage(new WebImage(Uri.parse("http://icons.iconarchive.com/icons/custom-icon-design/mini-3/48/test-paper-icon.png")));
+        mediaList.add(1, new MediaInfo.Builder("http://10.4.8.99/Content/DASH/Live/Channel(c-dash-smptett)/manifest.mpd")
+                .setStreamType(MediaInfo.STREAM_TYPE_LIVE)
+                .setContentType("application/dash+xml")
+                .setMetadata(movieMetadataLive2)
+                .setCustomData(jsonObjDesc)
+                .build());
+        MediaMetadata movieMetadataVod = new MediaMetadata(MediaMetadata.MEDIA_TYPE_MOVIE);
+        movieMetadataVod.putString(MediaMetadata.KEY_TITLE, "KEY_TITLE:VOD");
+        movieMetadataVod.addImage(new WebImage(Uri.parse("http://icons.iconarchive.com/icons/custom-icon-design/mini-3/48/test-paper-icon.png")));
+        mediaList.add(2, new MediaInfo.Builder("http://10.4.1.160/out/u/tv2news.mpd?start=2016-02-10T12:15:00Z&end=2016-02-10T12:30:00Z")
+                .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
+                .setContentType("application/dash+xml")
+                .setMetadata(movieMetadataVod)
+                .setCustomData(jsonObjDesc)
+                .build());
         return mediaList;
     }
 
