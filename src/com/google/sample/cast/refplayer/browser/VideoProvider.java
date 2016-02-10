@@ -194,7 +194,7 @@ public class VideoProvider {
 //                .setStreamDuration(30 * 60 * 1000)
 //                .setMediaTracks(new ArrayList<MediaTrack>())
 //                .build());
-        mediaList.add(new MediaInfo.Builder("https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/dash/BigBuckBunny.mpd")
+        mediaList.add(new MediaInfo.Builder("http://10.4.1.160/out/u/tv2news.mpd?start=2016-02-10T10:00:00Z&end=2016-02-10T10:30:00Z")
                 .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
                 .setContentType("application/dash+xml")
                 .setMetadata(movieMetadata)
